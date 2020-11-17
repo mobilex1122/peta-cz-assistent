@@ -7,5 +7,10 @@ pro funkc asistenta potřebujete:
       wikipedia
       playsound
    instalace funkcí (přesně v tomhle pořadí v cmd)
-   '''
-   py -m pip install
+   ```
+   cd (místo uložení) např.: C:\Users\mobilex\Download\peta-cz-assistent
+   py -m pip install PyAudio-0.2.11-cp39-cp39-win_amd64.whl
+   py -m pip install gTTS
+   py -m pip install playsound
+   py -m pip install wikipedia
+   ```
