@@ -14,3 +14,4 @@ pro funkc asistenta potřebujete:
    py -m pip install playsound
    py -m pip install wikipedia
    ```
+   nebo skuzte setup.bat
