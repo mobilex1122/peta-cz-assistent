@@ -8,6 +8,7 @@ import random
 import wikipedia
 import playsound
 warnings.filterwarnings('ignore')
+wikipedia.set_lang('cs')
 
 def recordAudio():
     r = sr.Recognizer()
@@ -66,13 +67,30 @@ def vtip():
     
     responce = random.choice(vtipy)
     return responce
+def wiki():
+    assistentresponse('řekni co chceš hledat')
+    text = recordAudio()
+    if text == '':
+        assistentresponse('promiň nezaznamenala jsem co si říkal skuz to znovu')
+        rwiki()
+    spa = wikipedia.search(text, results=1)
+    spb = spa[0]
+    
+    try:
+        responce = wikipedia.summary(spb)
+        return responce
+    except wikipedia.DisambiguationError as e:
+        responce = 'promiň tohle nejak nejde vyhledat skus to přesněji'
+        print('výběr: '+str(e.options))
+        return responce
+    return responce
+def rwiki():
+    wiki()
 
 
 
 
-
-
-assistentresponse('ahoj jsem Péťa tvoje osobní asistentka.')
+assistentresponse('ahoj jsem Péťa tvoje osobní asistentka. pozor: nejsem dodělaná případné chybi prosím hlašte mému vývojáři')
 #hlavní příkazy
 while True:
     text = recordAudio()
@@ -88,11 +106,14 @@ while True:
         if('děkuji' in text):
             responce = 'nemáš zač'
         if('Wikipedie' in text):
-            responce = 'tahle funkce ještě není dostupná'
+            assistentresponse('tato funkce je nestabilní. muže vypnout tento program')
+            responce = wiki()
         if('Kdo tě vyrobil' in text):
             print('mobilex1122')
         if('Řekni mi vtip' in text):
             responce = vtip()
+        if('Řekni mi nějaký tip' in text):
+            responce = 'tato funkce ještě není hotová'
         if('co umíš' in text):
             responce = 'umím ti říct vtip, kolikátého je a pozdravit tě. výce funkcí výjde v budoucnu. pokud máte nápad na novou funkcy napyšte mému vývojářy'
         if responce != '':
