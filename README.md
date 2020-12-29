@@ -8,5 +8,6 @@ pro funkc asistenta potřebujete:
    py -m pip install gTTS
    py -m pip install playsound
    py -m pip install wikipedia
+   py -m pip install speechrecognition
    ```
    nebo skuzte setup.bat
